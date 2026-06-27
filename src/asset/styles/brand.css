@@ -1,0 +1,273 @@
+/**
+ * Farmish Royal — Brand Tokens
+ * A regal palette fit for a sovereign household
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+:root {
+  /* ── Royal Palette ── */
+  --royal-deep:      #0d2b1f;   /* deep emerald forest */
+  --royal-forest:    #1a4a32;   /* forest green */
+  --royal-emerald:   #1e6640;   /* emerald throne */
+  --royal-sage:      #2d7a53;   /* sage velvet */
+  --royal-sage-soft: #c8dfd4;   /* sage mist */
+  --royal-sage-faint:#eaf4ee;   /* ivory sage */
+
+  --royal-gold:      #c9a84c;   /* champagne gold */
+  --royal-gold-bright:#e2c06a;  /* bright gold */
+  --royal-gold-dim:  #a07828;   /* antique gold */
+  --royal-gold-faint:#f5ead5;   /* gold cream */
+
+  --royal-ivory:     #faf6ef;   /* parchment ivory */
+  --royal-cream:     #f3ece0;   /* aged cream */
+  --royal-pearl:     #e8dfc8;   /* pearl */
+  --royal-ink:       #1a1208;   /* royal ink */
+  --royal-ink-soft:  #3a2f1a;   /* warm ink */
+  --royal-muted:     #6b5e43;   /* aged brown muted */
+  --royal-subtle:    #9e8c70;   /* subtle parchment */
+  --royal-white:     #ffffff;
+
+  /* ── Typography ── */
+  --font-display:    'Playfair Display', 'Times New Roman', serif;
+  --font-body:       'Cormorant Garamond', Georgia, serif;
+  --font-utility:    'Jost', 'Segoe UI', sans-serif;
+
+  /* ── Aliases used across app ── */
+  --bk-green:        var(--royal-emerald);
+  --bk-green-dark:   var(--royal-forest);
+  --bk-green-soft:   var(--royal-sage-faint);
+  --bk-mint:         var(--royal-sage-soft);
+  --bk-surface:      var(--royal-ivory);
+  --bk-ink:          var(--royal-ink);
+  --bk-muted:        var(--royal-muted);
+  --heading-accent:  var(--royal-emerald);
+  --text-primary:    var(--royal-ink);
+  --text-body:       var(--royal-ink-soft);
+  --text-muted:      var(--royal-muted);
+  --text-soft:       var(--royal-subtle);
+  --farm-primary:    var(--royal-emerald);
+  --farm-primary-dark: var(--royal-forest);
+  --farm-primary-light: var(--royal-sage);
+  --farm-primary-soft: var(--royal-sage-faint);
+  --farm-accent:     var(--royal-gold);
+  --farm-accent-soft:var(--royal-gold-faint);
+  --farm-ink:        var(--royal-ink);
+  --farm-surface:    var(--royal-ivory);
+  --farm-white:      var(--royal-white);
+  --farm-body:       var(--royal-ink-soft);
+  --farm-muted:      var(--royal-muted);
+  --farm-brand:      var(--font-display);
+
+  /* ── Ornament ── */
+  --border-royal:    1px solid rgba(201, 168, 76, 0.35);
+  --border-divider:  1px solid rgba(201, 168, 76, 0.2);
+  --shadow-card:     0 4px 32px rgba(13, 43, 31, 0.1), 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-nav:      0 4px 24px rgba(13, 43, 31, 0.22);
+  --shadow-btn:      0 4px 18px rgba(13, 43, 31, 0.28);
+  --radius-card:     2px;
+  --radius-btn:      1px;
+}
+
+/* ── Wordmark: Playfair Display, full gold ── */
+.wordmark {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-style: italic;
+  letter-spacing: 0.04em !important;
+  line-height: 1 !important;
+}
+
+.wordmark--nav {
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem) !important;
+}
+
+.wordmark--nav .wordmark__base,
+.wordmark--nav .wordmark__accent {
+  color: var(--royal-gold-bright) !important;
+  text-shadow: 0 0 20px rgba(226, 192, 106, 0.4);
+}
+
+.wordmark--mobile .wordmark__base,
+.wordmark--mobile .wordmark__accent {
+  color: var(--royal-gold-bright) !important;
+}
+
+.wordmark--mobile { font-size: 1.5rem !important; }
+
+.wordmark--drawer .wordmark__base,
+.wordmark--drawer .wordmark__accent {
+  color: var(--royal-gold-bright) !important;
+}
+.wordmark--drawer { font-size: 1.45rem !important; }
+
+/* ── Body base ── */
+body {
+  background: var(--royal-ivory) !important;
+  color: var(--royal-ink-soft) !important;
+  font-family: var(--font-body) !important;
+}
+
+/* ── Navbar ── */
+.navbar.navbar--blinkit {
+  background: linear-gradient(
+    180deg,
+    var(--royal-deep) 0%,
+    var(--royal-forest) 100%
+  ) !important;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.3) !important;
+  box-shadow: var(--shadow-nav) !important;
+}
+
+/* Remove the white logo badge */
+.navbar.navbar--blinkit .logo.logo-wordmark {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.navbar.navbar--blinkit .nav-links a {
+  color: rgba(243, 236, 224, 0.88) !important;
+  font-family: var(--font-utility) !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+}
+
+.navbar.navbar--blinkit .nav-links a:hover {
+  color: var(--royal-gold-bright) !important;
+}
+
+/* ── Delivery bar ── */
+.delivery-status {
+  background: linear-gradient(90deg, var(--royal-deep), var(--royal-forest)) !important;
+  border-bottom: var(--border-royal) !important;
+}
+.delivery-status h3,
+.delivery-status p {
+  color: var(--royal-gold-faint) !important;
+  font-family: var(--font-utility) !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* ── Links ── */
+.inline-link,
+.home-featured__see-all,
+.link-back,
+.breadcrumb a {
+  color: var(--royal-emerald) !important;
+}
+
+/* ── Chips ── */
+.chip--active {
+  background: var(--royal-emerald) !important;
+  border-color: var(--royal-gold) !important;
+  color: var(--royal-ivory) !important;
+}
+.chip:hover { border-color: var(--royal-gold) !important; }
+
+/* ── Prices ── */
+.product-price,
+.product-detail-price,
+.cart-line__sum,
+.summary-row--total span:last-child {
+  color: var(--royal-emerald) !important;
+  font-family: var(--font-display) !important;
+}
+
+/* ── Buttons ── */
+.btn-buy-now {
+  background: linear-gradient(135deg, var(--royal-sage) 0%, var(--royal-emerald) 100%) !important;
+  color: var(--royal-ivory) !important;
+  border: 1px solid rgba(201, 168, 76, 0.25) !important;
+  font-family: var(--font-utility) !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-size: 0.7rem !important;
+}
+.btn-buy-now:hover {
+  background: linear-gradient(135deg, var(--royal-emerald) 0%, var(--royal-forest) 100%) !important;
+  box-shadow: var(--shadow-btn) !important;
+}
+
+.btn-add-cart {
+  color: var(--royal-emerald) !important;
+  border-color: rgba(30, 102, 64, 0.4) !important;
+  font-family: var(--font-utility) !important;
+  letter-spacing: 0.06em !important;
+  font-size: 0.7rem !important;
+}
+.btn-add-cart:hover {
+  background: var(--royal-sage-faint) !important;
+  border-color: var(--royal-emerald) !important;
+}
+
+/* ── Inputs ── */
+.input:focus {
+  border-color: var(--royal-gold) !important;
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.14) !important;
+}
+
+/* ── Cart badge ── */
+.nav-cart-badge {
+  background: var(--royal-gold) !important;
+  color: var(--royal-deep) !important;
+  font-family: var(--font-utility) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Quick links ── */
+.home-quick-card:hover {
+  border-color: var(--royal-gold) !important;
+  box-shadow: 0 6px 30px rgba(201, 168, 76, 0.2) !important;
+}
+.home-quick-card__icon { color: var(--royal-emerald) !important; }
+
+/* ── Payment ── */
+.payment-method--active {
+  background: var(--royal-sage-faint) !important;
+  border-color: var(--royal-gold) !important;
+}
+.payment-method__icon { color: var(--royal-emerald) !important; }
+
+/* ── Tracking ── */
+.status-pill--ok { background: var(--royal-sage-faint) !important; color: var(--royal-emerald) !important; }
+.tracking-step--current .tracking-step__dot { background: var(--royal-gold) !important; }
+.tracking-step--done::after { background: var(--royal-sage-soft) !important; }
+
+/* ── Footer ── */
+.footer {
+  background: linear-gradient(180deg, var(--royal-deep) 0%, #070f0b 100%) !important;
+  border-top: var(--border-royal) !important;
+}
+.footer-section h3 {
+  color: var(--royal-gold-bright) !important;
+  font-family: var(--font-display) !important;
+  font-style: italic !important;
+  font-size: 0.95rem !important;
+}
+.footer a,
+.footer-section a { color: rgba(232, 223, 200, 0.72) !important; }
+.footer a:hover,
+.footer-section a:hover { color: var(--royal-gold-bright) !important; }
+
+/* ── Section title underlines ── */
+.categories-title::after,
+.section-title::after {
+  background: linear-gradient(90deg, var(--royal-gold), var(--royal-sage-soft)) !important;
+}
+
+/* ── Mobile bottom nav ── */
+.mobile-bottom-nav .nav-item.active { color: var(--royal-emerald) !important; }
+
+/* ── Titles ── */
+.page-title,
+.categories-title,
+.home-featured__title {
+  color: var(--royal-ink) !important;
+  font-family: var(--font-display) !important;
+}
+.footer-section h3 { color: var(--royal-gold-bright) !important; }
