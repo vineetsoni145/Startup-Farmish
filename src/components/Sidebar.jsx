@@ -77,6 +77,9 @@ function Sidebar({ open, onClose }) {
               <Link to="/offers" onClick={onClose}>
                 Offers
               </Link>
+              <Link to="/about" onClick={onClose}>
+                About us
+              </Link>
               <Link to="/orders" onClick={onClose}>
                 My orders
               </Link>

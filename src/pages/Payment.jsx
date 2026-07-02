@@ -4,6 +4,7 @@ import { useAppState } from "../context/AppStateContext";
 import { apiInitiatePayment } from "../services/payment.api";
 import { formatINR } from "../utils/money";
 import { usePageMetadata } from "../hooks/usePageMetadata";
+import BackButton from "../components/BackButton";
 
 const PAYMENT_METHODS = [
   {
@@ -55,7 +56,10 @@ function Payment() {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
   const [upiId, setUpiId] = useState("");
-  const [cardLast4, setCardLast4] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardExpiry, setCardExpiry] = useState("");
+  const [cardCvv, setCardCvv] = useState("");
   const [savePayment, setSavePayment] = useState(false);
 
   const selectedSavedMethod = method.startsWith("saved-")
@@ -94,9 +98,23 @@ function Payment() {
         setMsg("Enter your UPI ID to continue.");
         return;
       }
-      if (activeMethod === "card" && cardLast4.length !== 4) {
-        setMsg("Enter the last 4 digits of your card.");
-        return;
+      if (activeMethod === "card") {
+        if (cardNumber.replace(/\s/g, "").length !== 16) {
+          setMsg("Enter a valid 16-digit card number.");
+          return;
+        }
+        if (!cardName.trim()) {
+          setMsg("Enter the cardholder name.");
+          return;
+        }
+        if (cardExpiry.length !== 5) {
+          setMsg("Enter card expiry (MM/YY).");
+          return;
+        }
+        if (cardCvv.length !== 3) {
+          setMsg("Enter 3-digit CVV.");
+          return;
+        }
       }
     }
 
@@ -114,15 +132,14 @@ function Payment() {
     }
 
     if (!selectedSavedMethod && savePayment) {
+      const last4 = cardNumber.replace(/\s/g, "").slice(-4);
       const label =
-        activeMethod === "card" ? `Card ending ${cardLast4}` : `UPI ${upiId}`;
+        activeMethod === "card" ? `Card ending ${last4}` : `UPI ${upiId}`;
       savePaymentMethod({
         type: activeMethod,
         label,
         details:
-          activeMethod === "card"
-            ? { last4: cardLast4 }
-            : { upiId: upiId.trim() },
+          activeMethod === "card" ? { last4: last4 } : { upiId: upiId.trim() },
       });
     }
 
@@ -139,6 +156,7 @@ function Payment() {
 
   return (
     <main className="page page-pad page-payment">
+      <BackButton label="Back to checkout" />
       <h1 className="page-title">Payment</h1>
       <p className="page-subtitle">
         Choose how you want to pay — demo gateway (Razorpay-style).
@@ -244,21 +262,73 @@ function Payment() {
               ) : null}
 
               {method === "card" ? (
-                <label className="form-label">
-                  Card last 4 digits
-                  <input
-                    className="input"
-                    inputMode="numeric"
-                    maxLength={4}
-                    placeholder="1234"
-                    value={cardLast4}
-                    onChange={(e) =>
-                      setCardLast4(
-                        e.target.value.replace(/\D/g, "").slice(0, 4),
-                      )
-                    }
-                  />
-                </label>
+                <div className="card-form">
+                  <label className="form-label">
+                    Card number
+                    <input
+                      className="input"
+                      inputMode="numeric"
+                      maxLength={19}
+                      placeholder="1234 5678 9012 3456"
+                      value={cardNumber}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, "");
+                        const formatted =
+                          value.match(/.{1,4}/g)?.join(" ") || value;
+                        setCardNumber(formatted);
+                      }}
+                      autoComplete="cc-number"
+                    />
+                  </label>
+                  <label className="form-label">
+                    Cardholder name
+                    <input
+                      className="input"
+                      placeholder="Name on card"
+                      value={cardName}
+                      onChange={(e) =>
+                        setCardName(e.target.value.toUpperCase())
+                      }
+                      autoComplete="cc-name"
+                    />
+                  </label>
+                  <div className="card-form-row">
+                    <label className="form-label">
+                      Expiry date
+                      <input
+                        className="input"
+                        inputMode="numeric"
+                        maxLength={5}
+                        placeholder="MM/YY"
+                        value={cardExpiry}
+                        onChange={(e) => {
+                          let value = e.target.value.replace(/\D/g, "");
+                          if (value.length >= 2) {
+                            value = value.slice(0, 2) + "/" + value.slice(2, 4);
+                          }
+                          setCardExpiry(value);
+                        }}
+                        autoComplete="cc-exp"
+                      />
+                    </label>
+                    <label className="form-label">
+                      CVV
+                      <input
+                        className="input"
+                        inputMode="numeric"
+                        maxLength={3}
+                        placeholder="123"
+                        value={cardCvv}
+                        onChange={(e) =>
+                          setCardCvv(
+                            e.target.value.replace(/\D/g, "").slice(0, 3),
+                          )
+                        }
+                        autoComplete="cc-csc"
+                      />
+                    </label>
+                  </div>
+                </div>
               ) : null}
 
               {method === "netbanking" ? (

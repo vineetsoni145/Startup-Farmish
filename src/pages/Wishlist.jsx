@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppState } from "../context/AppStateContext";
 import { usePageMetadata } from "../hooks/usePageMetadata";
+import BackButton from "../components/BackButton";
 
 function Wishlist() {
   usePageMetadata(
@@ -19,22 +20,31 @@ function Wishlist() {
 
   if (!wishlist || wishlist.length === 0) {
     return (
-      <main className="page page-pad">
-        <h1>Your wishlist is empty</h1>
-        <p>
-          Save items to your wishlist to revisit them later. Browse the shop to
-          add favorites.
-        </p>
-        <Link to="/shop" className="btn">
-          Go to shop
-        </Link>
+      <main className="page page-pad page-wishlist-empty">
+        <BackButton />
+        <div className="wishlist-empty-content">
+          <div className="wishlist-empty-icon">♥</div>
+          <h1>Your wishlist is empty</h1>
+          <p>
+            Save items to your wishlist to revisit them later. Browse the shop
+            to add favorites.
+          </p>
+          <Link to="/shop" className="btn btn-buy-now">
+            Go to shop
+          </Link>
+        </div>
       </main>
     );
   }
 
   return (
-    <main className="page page-pad">
-      <h1>Wishlist</h1>
+    <main className="page page-pad page-wishlist">
+      <BackButton />
+      <h1 className="page-title">Wishlist</h1>
+      <p className="wishlist-count">
+        <strong>{wishlist.length}</strong>{" "}
+        {wishlist.length === 1 ? "item" : "items"} saved
+      </p>
       <div className="wishlist-grid">
         {wishlist.map((p) => (
           <div key={p.id} className="wishlist-item">

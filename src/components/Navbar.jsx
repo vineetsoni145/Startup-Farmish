@@ -91,6 +91,30 @@ function Navbar({ onMenuClick }) {
               Categories
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/offers"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              Offers
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              Contact
+            </NavLink>
+          </li>
         </ul>
 
         <div className="nav-right">

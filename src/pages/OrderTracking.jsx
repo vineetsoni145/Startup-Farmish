@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAppState } from "../context/AppStateContext";
 import { formatINR } from "../utils/money";
 import { usePageMetadata } from "../hooks/usePageMetadata";
+import BackButton from "../components/BackButton";
 
 const STEPS = [
   { key: "placed", label: "Order placed", icon: "fa-clipboard-check" },
@@ -59,6 +60,7 @@ function OrderTracking() {
 
   return (
     <main className="page page-pad page-tracking">
+      <BackButton label="Back to orders" />
       <h1 className="page-title">Track order</h1>
       <p className="page-subtitle">
         Live status for your delivery — demo timeline (maps API later).

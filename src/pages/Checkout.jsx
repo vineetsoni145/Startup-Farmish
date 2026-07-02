@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppState } from "../context/AppStateContext";
 import { formatINR } from "../utils/money";
 import { usePageMetadata } from "../hooks/usePageMetadata";
+import BackButton from "../components/BackButton";
 
 function Checkout() {
   usePageMetadata(
@@ -128,6 +129,7 @@ function Checkout() {
 
   return (
     <main className="page page-pad page-checkout">
+      <BackButton label="Back to cart" />
       <h1 className="page-title">Checkout</h1>
       <p className="page-subtitle">
         Demo flow: order is stored locally (prototype for investors).
